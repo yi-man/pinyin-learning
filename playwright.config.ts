@@ -12,7 +12,7 @@ export default defineConfig({
     timeout: 10000,
   },
   use: {
-    baseURL: 'http://localhost:3100',
+    baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
   },
   projects: [
@@ -23,7 +23,7 @@ export default defineConfig({
   ],
   webServer: process.env.CI ? {
     command: 'pnpm start',
-    url: 'http://localhost:3100',
+    url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
     stdout: 'pipe',
