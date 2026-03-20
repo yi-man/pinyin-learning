@@ -22,11 +22,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: process.env.CI ? "pnpm start" : "pnpm dev",
+    command: "pnpm start",
     url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
     stdout: "pipe",
     stderr: "pipe",
+    env: {
+      PORT: "3100",
+    },
   },
 });
