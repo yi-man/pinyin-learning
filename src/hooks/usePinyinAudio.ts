@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 export function usePinyinAudio() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isSupported] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return Boolean(window.speechSynthesis);
-  });
+  const [isSupported, setIsSupported] = useState(true);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  useEffect(() => {
+    const supported = typeof window !== "undefined" && Boolean(window.speechSynthesis);
+    setIsSupported(supported);
+  }, []);
 
   const speak = useCallback((pinyin: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) {
