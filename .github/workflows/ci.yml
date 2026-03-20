@@ -37,5 +37,4 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
-      - run: PORT=3100 pnpm start &
-      - run: sleep 5 && pnpm test
+      - run: pnpm test
