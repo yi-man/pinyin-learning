@@ -37,15 +37,22 @@
 ## 技术栈
 
 ### 包管理
+
 - **包管理器**: pnpm
 
 ### 框架
+
 - **全栈框架**: Next.js
 - **样式方案**: CSS Modules / Tailwind CSS
 - **数据库**: JSON文件存储
 - **认证方式**: JWT
 
+### 测试
+
+- **集成测试**: Playwright
+
 ### 部署
+
 - **方式**: 静态托管 (Vercel / Netlify)
 
 ## Available Agents
@@ -69,4 +76,3 @@ Comprehensive testing including unit tests, integration tests, end-to-end scenar
 - After feature development
 - Regression testing
 - Pre-deployment validation
-
