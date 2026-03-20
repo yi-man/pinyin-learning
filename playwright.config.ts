@@ -7,6 +7,10 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 60000,
+  expect: {
+    timeout: 10000,
+  },
   use: {
     baseURL: 'http://localhost:3100',
     trace: 'on-first-retry',
@@ -17,9 +21,12 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  webServer: {
-    command: 'pnpm dev',
+  webServer: process.env.CI ? {
+    command: 'pnpm start',
     url: 'http://localhost:3100',
     reuseExistingServer: !process.env.CI,
-  },
+    timeout: 120000,
+    stdout: 'pipe',
+    stderr: 'pipe',
+  } : undefined,
 });
