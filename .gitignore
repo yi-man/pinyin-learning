@@ -10,8 +10,14 @@
 !.yarn/releases
 !.yarn/versions
 
+# pnpm
+.pnpm-store
+pnpm-debug.log*
+
 # testing
 /coverage
+/test-results
+/playwright-report
 
 # next.js
 /.next/

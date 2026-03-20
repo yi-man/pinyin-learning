@@ -47,6 +47,10 @@
 - **数据库**: JSON文件存储
 - **认证方式**: JWT
 
+### 测试
+
+- **集成测试**: Playwright
+
 ### 部署
 
 - **方式**: 静态托管 (Vercel / Netlify)
@@ -72,16 +76,3 @@ Comprehensive testing including unit tests, integration tests, end-to-end scenar
 - After feature development
 - Regression testing
 - Pre-deployment validation
-
-\=======
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-
-<!-- END:nextjs-agent-rules -->
-
-> > > > > > > ea953d3 (Initial commit from Create Next App)
-
