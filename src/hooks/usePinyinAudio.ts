@@ -4,15 +4,15 @@ import { useState, useCallback, useRef, useEffect } from "react";
 
 export function usePinyinAudio() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [chineseVoice, setChineseVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [voiceReady, setVoiceReady] = useState(false);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
 
   useEffect(() => {
     const loadVoices = () => {
       const voices = window.speechSynthesis.getVoices();
-      const zhVoice = voices.find((v) => v.lang.startsWith("zh"));
-      if (zhVoice) {
-        setChineseVoice(zhVoice);
+      const hasZhVoice = voices.some((v) => v.lang.startsWith("zh"));
+      if (hasZhVoice) {
+        setVoiceReady(true);
       }
     };
 
@@ -28,13 +28,16 @@ export function usePinyinAudio() {
 
       window.speechSynthesis.cancel();
 
+      const voices = window.speechSynthesis.getVoices();
+      const zhVoice = voices.find((v) => v.lang.startsWith("zh")) || null;
+
       const utterance = new SpeechSynthesisUtterance(pinyin);
       utterance.lang = "zh-CN";
       utterance.rate = 0.8;
       utterance.pitch = 1.1;
 
-      if (chineseVoice) {
-        utterance.voice = chineseVoice;
+      if (zhVoice) {
+        utterance.voice = zhVoice;
       }
 
       utterance.onstart = () => setIsPlaying(true);
@@ -44,7 +47,7 @@ export function usePinyinAudio() {
       utteranceRef.current = utterance;
       window.speechSynthesis.speak(utterance);
     },
-    [chineseVoice]
+    [voiceReady]
   );
 
   const stop = useCallback(() => {
